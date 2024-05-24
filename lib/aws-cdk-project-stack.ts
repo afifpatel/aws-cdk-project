@@ -5,6 +5,7 @@ import { IQueue, Queue } from 'aws-cdk-lib/aws-sqs';
 import { Construct } from 'constructs';
 
 export class AwsCdkProjectStack extends cdk.Stack {
+  static AwsCdkStack: any;
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -27,5 +28,16 @@ export class AwsCdkProjectStack extends cdk.Stack {
 
     // Add event notification for S3 bucket to send messages to SQS queue when a new object is created
     level2S3Bucket.addEventNotification(EventType.OBJECT_CREATED, new SqsDestination(queue));
+
+    // Lambda function to be invoked by S3 bucket event notification
+    const lambdaFunction = new cdk.aws_lambda.Function(this, 'LambdaFunction', {
+      functionName: 'l2-bucket-update-function',
+      runtime: cdk.aws_lambda.Runtime.NODEJS_16_X,
+      handler: 'index.handler',
+      code: new cdk.aws_lambda.AssetCode('src'),
+      memorySize: 128,
+      timeout: cdk.Duration.seconds(25)
+    });
+
   }
 }

@@ -1,17 +1,17 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as AwsCdkProject from '../lib/aws-cdk-project-stack';
+import * as cdk from 'aws-cdk-lib';
+import * as AwsCdkProjectStack from '../lib/aws-cdk-project-stack';
+import { Template } from 'aws-cdk-lib/assertions';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/aws-cdk-project-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new AwsCdkProject.AwsCdkProjectStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+test('Stack Created', () => {
+    const app = new cdk.App();
+    const stack = new AwsCdkProjectStack.AwsCdkProjectStack(app, 'MyTestStack');
+    const template = Template.fromStack(stack);
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+    template.hasResourceProperties('AWS::Lambda::Function', {
+        FunctionName: 'l2-bucket-update-function',
+        Handler: 'index.handler',
+        Runtime: 'nodejs16.x',
+        memorySize: 128,
+    })
+
 });
