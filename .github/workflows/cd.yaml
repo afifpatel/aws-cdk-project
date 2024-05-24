@@ -26,8 +26,8 @@ jobs:
     - name: Build CDK Stack
       run: npm run build
 
-    - name: Diff AWS CDK Stack
-      run: "npx cdk diff AwsCdkProjectStack --ci --require-approval never --no-asset-metadata"
+    - name: Deploy AWS CDK Stack
+      run: "npx cdk deploy AwsCdkProjectStack --ci --require-approval never --no-asset-metadata"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
