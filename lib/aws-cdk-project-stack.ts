@@ -3,6 +3,7 @@ import { Bucket, CfnBucket, EventType } from 'aws-cdk-lib/aws-s3';
 import { SqsDestination } from 'aws-cdk-lib/aws-s3-notifications';
 import { IQueue, Queue } from 'aws-cdk-lib/aws-sqs';
 import { Construct } from 'constructs';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 
 export class AwsCdkProjectStack extends cdk.Stack {
   static AwsCdkStack: any;
@@ -30,13 +31,12 @@ export class AwsCdkProjectStack extends cdk.Stack {
     level2S3Bucket.addEventNotification(EventType.OBJECT_CREATED, new SqsDestination(queue));
 
     // Lambda function to be invoked by S3 bucket event notification
-    const lambdaFunction = new cdk.aws_lambda.Function(this, 'LambdaFunction', {
+    new lambda.Function(this, 'LambdaFunction', {
       functionName: 'l2-bucket-update-function',
-      runtime: cdk.aws_lambda.Runtime.NODEJS_16_X,
+      code: new lambda.AssetCode('src'),
       handler: 'index.handler',
-      code: new cdk.aws_lambda.AssetCode('src'),
+      runtime: lambda.Runtime.NODEJS_16_X,
       memorySize: 128,
-      timeout: cdk.Duration.seconds(25)
     });
 
   }
