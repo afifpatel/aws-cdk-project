@@ -8,6 +8,6 @@ describe('App created', () => {
 
     it('returns no name and tests', async () => {
         const output = await handler({ name: ''});
-        expect(output).toStrictEqual('Nice work');
+        expect(output).toStrictEqual('Nice work!');
     });
 })

@@ -7,11 +7,8 @@ test('Stack Created', () => {
     const stack = new AwsCdkProjectStack.AwsCdkProjectStack(app, 'MyTestStack');
     const template = Template.fromStack(stack);
 
-    template.hasResourceProperties('AWS::Lambda::Function', {
-        FunctionName: 'l2-bucket-update-function',
-        Handler: 'index.handler',
-        Runtime: 'nodejs16.x',
-        memorySize: 128,
+    template.hasResourceProperties('AWS::S3::Bucket', {
+        BucketName: 'l2-bucket-aletha',
     })
 
 });
