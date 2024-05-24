@@ -1,18 +1,12 @@
 
 # AWS CDK Project
 
-This project showcases how to use the AWS Cloud Development Kit (CDK) with TypeScript to automate the provisioning of AWS resources. 
+This barnch showcases how to use the AWS Cloud Development Kit (CDK) with TypeScript to create an AWS Codepipeline.
 
-It sets up:
-
-- S3 bucket
-- SQS queue
-- Lambda function. 
-
-The S3 bucket is configured to send notifications to the SQS queue upon the creation of new objects.
+A SNS is configured to send notifications to users subscribed.
 
 **GitHub Workflow:**
-This project includes a GitHub workflow to automate tasks such as building, testing, and deploying the CDK stack.
+This branch **DOES NOT USE** the GitHub workflow.
 
 
 ## Features
