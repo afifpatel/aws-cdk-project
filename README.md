@@ -1,7 +1,7 @@
 
 # AWS CDK Project
 
-This project showcases how to use the AWS Cloud Development Kit (CDK) with TypeScript to automate the provisioning of AWS resources. 
+This project uses the AWS Cloud Development Kit (CDK) with TypeScript for provisioning AWS resources and configuring events.
 
 It sets up:
 
