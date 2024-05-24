@@ -11,7 +11,7 @@ It sets up:
 
 The S3 bucket is configured to send notifications to the SQS queue upon the creation of new objects.
 
-GitHub Workflow:
+**GitHub Workflow:**
 This project includes a GitHub workflow to automate tasks such as building, testing, and deploying the CDK stack.
 
 
