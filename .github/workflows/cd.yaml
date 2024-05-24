@@ -2,9 +2,9 @@ name: CD
 
 on:
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
+    types: [merged]
+    
 jobs:
   build:
     if: github.event.pull_request.merged == true
