@@ -30,10 +30,26 @@ export class AwsCdkProjectStack extends cdk.Stack {
     // Add event notification for S3 bucket to send messages to SQS queue when a new object is created
     level2S3Bucket.addEventNotification(EventType.OBJECT_CREATED, new SqsDestination(queue));
 
-    // Lambda function to be invoked by S3 bucket event notification
+    // AWS CICD Pipeline
+
+    const bucketName = new cdk.CfnParameter(this, 'BucketName', {
+      type: 'String',
+      default: '',
+      description: 'S3 bucket name where Codepipeline will store lambda code'
+    });
+
+    const bucketKey = new cdk.CfnParameter(this, 'BucketKey', {
+      type: 'String',
+      default: '',
+      description: 'S3 bucket key which Codepipeline will use to store lambda code'
+    });
+
+    const bucket = Bucket.fromBucketName(this, 'pipeline-bucket', bucketName.valueAsString);
+
+    // Lambda function
     new lambda.Function(this, 'LambdaFunction', {
       functionName: 'l2-bucket-update-function',
-      code: new lambda.AssetCode('src'),
+      code: lambda.Code.fromBucket(bucket, bucketKey.valueAsString),
       handler: 'index.handler',
       runtime: lambda.Runtime.NODEJS_16_X,
       memorySize: 128,
