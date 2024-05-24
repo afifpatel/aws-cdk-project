@@ -14,7 +14,6 @@ The S3 bucket is configured to send notifications to the SQS queue upon the crea
 **GitHub Workflow:**
 This project includes a GitHub workflow to automate tasks such as building, testing, and deploying the CDK stack.
 
-
 ## Features
 
 - Provisions a S3 bucket.
@@ -22,7 +21,6 @@ This project includes a GitHub workflow to automate tasks such as building, test
 - Provisions a Lambda
 - Configures event notifications from S3 to SQS.
 - Creates a Github workflow for CICD.
-
 
 ## Prerequisites
 
@@ -41,12 +39,10 @@ cd aws-cdk-project
 
 ```
 npm install
-
 ```
 
 3. Deploy the stack:
 
 ```
 cdk deploy
-
 ```
