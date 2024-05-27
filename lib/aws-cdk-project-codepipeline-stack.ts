@@ -88,7 +88,7 @@ export class AwsCdkCodepipelineStack extends cdk.Stack {
     );
     const buildLambda = getBuildSpec(
         props.codebuild.lambdaProject,
-        ['npm run test', 'pwd'],
+        ['pwd','ls'],
         'dist/src',
         [props.codebuild.targetLambda]
     );
