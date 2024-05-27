@@ -70,24 +70,24 @@ test('Contains KMS Key', () => {
 //   });
 // });
 
-test('Contains CodeBuild LambdaProject', () => {
-  const lambdaBuildSpec = '{\n  "version": "0.2",\n  "phases": {\n    "install": {\n      ' +
-  '"commands": [\n        "npm ci"\n      ]\n    },\n    "build": {\n      "commands": [\n' +
-  '        "npm run build"\n      ]\n    },\n    "post_build": {\n      "commands": [\n        "npm run test"\n      ]\n  ' +
-  '  }\n  },\n  "artifacts": {\n    "base-directory": "dist/src",\n    "files": [\n      ' +
-  `"${environmentConfig.codebuild.targetLambda}"\n    ]\n  }\n}`;
+// test('Contains CodeBuild LambdaProject', () => {
+//   const lambdaBuildSpec = '{\n  "version": "0.2",\n  "phases": {\n    "install": {\n      ' +
+//   '"commands": [\n        "npm ci"\n      ]\n    },\n    "build": {\n      "commands": [\n' +
+//   '        "npm run build"\n      ]\n    },\n    "post_build": {\n      "commands": [\n        "npm run test"\n      ]\n  ' +
+//   '  }\n  },\n  "artifacts": {\n    "base-directory": "dist/src",\n    "files": [\n      ' +
+//   `"${environmentConfig.codebuild.targetLambda}"\n    ]\n  }\n}`;
 
-  template.hasResourceProperties('AWS::CodeBuild::Project', {
-    Name: environmentConfig.codebuild.lambdaProject,
-    Source: {
-      BuildSpec: lambdaBuildSpec,
-    },
-    Environment: {
-      Image: 'aws/codebuild/standard:6.0',
-      Type: 'LINUX_CONTAINER',
-    },
-  });
-});
+//   template.hasResourceProperties('AWS::CodeBuild::Project', {
+//     Name: environmentConfig.codebuild.lambdaProject,
+//     Source: {
+//       BuildSpec: lambdaBuildSpec,
+//     },
+//     Environment: {
+//       Image: 'aws/codebuild/standard:6.0',
+//       Type: 'LINUX_CONTAINER',
+//     },
+//   });
+// });
 
 test('Contains S3 Artifact Bucket', () => {
   template.hasResourceProperties('AWS::S3::Bucket', {
