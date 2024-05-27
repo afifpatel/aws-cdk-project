@@ -21,7 +21,7 @@ const environmentConfig: IAwsCdkCodepipelineStackProps = {
     codebuild: {
         templateProject: 'BuildTemplate',
         lambdaProject: 'BuildLambda',
-        targetStack: 'AwsCdkProject',
+        targetStack: 'AwsCdkCodepipelineStack',
         targetLambda: 'index.js'
     },
     pipelineName: 'LambdaDeploymentPipeline',
