@@ -3,6 +3,7 @@
 *.d.ts
 node_modules
 .vscode
+dist
 
 # CDK asset staging directory
 .cdk.staging
