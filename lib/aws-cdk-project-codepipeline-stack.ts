@@ -23,9 +23,9 @@ export class AwsCdkCodepipelineStack extends cdk.Stack {
       roleName: props.role.name,
       description: props.role.description,
       assumedBy: new iam.CompositePrincipal(
-        new iam.ServicePrincipal('codepipeline.amazonaws.com'),
+        new iam.ServicePrincipal('cloudformation.amazonaws.com'),
         new iam.ServicePrincipal('codebuild.amazonaws.com'),
-        new iam.ServicePrincipal('lambda.amazonaws.com')
+        new iam.ServicePrincipal('codepipeline.amazonaws.com')
       )
     });
     role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName(props.role.managedPolicy));

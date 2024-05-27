@@ -1,9 +1,10 @@
+import { Application } from "aws-cdk-lib/aws-appconfig";
 import { IAwsCdkCodepipelineStackProps } from "./stack-config-types";
 
 const environmentConfig: IAwsCdkCodepipelineStackProps = {
     tags: {
-        project: 'aws-cdk-codepipeline',
-        environment: 'dev'
+        Developer: 'dev1',
+        Application: 'AwsCdkProject'
     },
     role: {
         name: 'codepipeline-role',
@@ -20,7 +21,7 @@ const environmentConfig: IAwsCdkCodepipelineStackProps = {
     codebuild: {
         templateProject: 'BuildTemplate',
         lambdaProject: 'BuildLambda',
-        targetStack: 'AwsCdkCodepipelineStack',
+        targetStack: 'AwsCdkProject',
         targetLambda: 'index.js'
     },
     pipelineName: 'LambdaDeploymentPipeline',
