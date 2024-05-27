@@ -43,6 +43,8 @@ export class AwsCdkCodepipelineStack extends cdk.Stack {
       bucketName: props.bucketName,
       encryptionKey: key,
       encryption: cdk.aws_s3.BucketEncryption.KMS,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true
     });
     artifactBucket.grantReadWrite(role);
     const source = new codepipeline.Artifact();
@@ -134,6 +136,8 @@ export class AwsCdkCodepipelineStack extends cdk.Stack {
         },
         runOrder: 3
     });
+
+    console.log('lambda output....', lambdaOutput);
 
     /** Codepipeline */
     const pipeline = new codepipeline.Pipeline(this, 'codepipeline', {
